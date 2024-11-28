@@ -1,10 +1,12 @@
 /* Your grid layout and card styles here */
 .productgrid {
+
   display: grid;
   grid-template-columns: repeat(2, 1fr); /* 2 columns by default */
   gap: 0; /* No gap by default */
  
 }
+
 
 @font-face {
   font-family: 'myfont';

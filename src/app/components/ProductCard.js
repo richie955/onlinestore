@@ -4,17 +4,14 @@ import "./ProductCard.css";
 // Sample data for the product
 const ProductCard = ({ product }) => {
 
-  const [isWished, setIsWished] = useState(false);  // Wishlist toggle
-
-  const handleWishlistToggle = () => {
-    setIsWished(!isWished);
-  };
+ 
 
   return (
     <div className="product-card">
-      <div className="product-image">
-        <img src={product.image} alt={product.name} />
-      </div>
+      <div className="product-image ">
+  <img className='w-full aspect-[1/1] object-fit' src={`http://localhost:1337${product.image}`} alt={product.name} />
+</div>
+
 
       <div className="price">
           <span className="current-price">Rs.{product.price}</span>

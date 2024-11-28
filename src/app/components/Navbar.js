@@ -28,8 +28,8 @@ export default function DropdownAnimation() {
        {/* Center: Navigation Links */}
        <ul className="navbar-links">
          <li><a href="/">Home</a></li>
-         <li><a href="/">Classics</a></li>
-         <li><a href="#catalog">Catalog</a></li>
+         <li><a href="/classics">Classics</a></li>
+         <li><a href="/catalog">Catalog</a></li>
          <li><a href="/about">About Us</a></li>
          <li><a href="/about#contact">Contact</a></li>
        </ul>
@@ -62,8 +62,8 @@ export default function DropdownAnimation() {
         <div className="bg-black rounded-xl pt-2">
         <ul className="flex flex-col   text-white pl-6 uppercase font-extrabold">
         <li className="border-b mb-4 py-1 border-white"><a href="/">Home.</a></li>
-        <li className="border-b mb-4 py-1 border-white"><a href="/">Classics.</a></li>
-        <li className="border-b mb-4 py-1 border-white"><a href="#catalog">Catalog.</a></li>
+        <li className="border-b mb-4 py-1 border-white"><a href="/classics">Classics.</a></li>
+        <li className="border-b mb-4 py-1 border-white"><a href="/catalog">Catalog.</a></li>
         <li className="border-b mb-4 py-1 border-white"><a href="/about">About Us.</a></li>
         <li className="border-b pb-2 border-white"><a href="/about#contact">Contact.</a></li>
       </ul>
@@ -80,6 +80,8 @@ export default function DropdownAnimation() {
 
 
 // const Navbar = () => {
+
+ // 12cfb873178103cac994aca7c0c89bb60062f07ec11d727443523949adf89181676be706ce34ab633dbb4c2db123bb1f045a6942645276c2384e3492bb385ceee0fa28214c0f4effa2f6cb35f3e2c21dc8f3a3fb5ece56fe4b408b4f9489753b5790f5dcff5d56c0b41b5fd05f3ed085a2307e42f493efa73843a2702073725e
 //   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
 //   const toggleMenu = () => {

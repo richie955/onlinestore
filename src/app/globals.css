@@ -21,6 +21,11 @@
   font-weight: normal;
   font-style: normal;
 }
+
+html {
+  scroll-behavior: smooth; /* Add this to your CSS for smooth scrolling */
+}
+
 body {
   box-sizing: border-box;
 

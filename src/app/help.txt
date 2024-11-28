@@ -1,0 +1,130 @@
+import React, { useState, useEffect } from "react";
+import "./Hero.css";
+import useFetch from "../hooks/useFetch";
+
+const Hero = () => {
+  const images = [
+    "calma.jpg", // Replace with your image URLs
+    "belli.jpg",
+    "messi.jpg",
+  ];
+
+  const { loading, error, data } = useFetch('http://localhost:1337/hero-section');
+
+if (loading) return <p>Loading...</p>;
+if (error) return <p>Error: {error.message}</p>;
+
+return (
+    <div className="text-black" >
+      
+        <h1>Hero Section</h1>
+        <p className="bg-slate-500"><strong>ID:</strong> {data.id}</p>
+        <p><strong>Document ID:</strong> {data.documentId}</p>
+        <h2>{data.MainText}</h2>
+        <p><strong>Description:</strong>{data.Description}</p>
+        <h3>{data.subHeading}</h3>
+    </div>
+);
+
+  
+  this code wont work
+
+  import React from 'react';
+import useFetch from './useFetch'; // Adjust the import path to your `useFetch` hook
+
+const HeroSection = () => {
+    const { loading, error, data } = useFetch('http://localhost:1337/api/hero-section');
+
+    if (loading) return <p>Loading...</p>;
+    if (error) return <p>Error: {error.message}</p>;
+
+    // Safely access the data
+    const heroData = data?.data; // Get the nested "data" object
+
+    return (
+        <section className="hero-section">
+            <h1>{heroData?.MainText}</h1>
+            <h3>{heroData?.SubHeading}</h3>
+            <p>{heroData?.Description}</p>
+        </section>
+    );
+};
+
+export default HeroSection;
+
+this works 
+
+{
+	"data": {
+		"id": 2,
+		"documentId": "c2k8x50yhpo8scy0gdwcnipz",
+		"MainText": "Game Day Starts Here.",
+		"Description": "Discover premium jerseys crafted with the finest materials to deliver unmatched comfort and durability. Our pricing ranges fit every budget, ensuring everyone can gear up in style.",
+		"SubHeading": "Jerseys for Every Occasion",
+		"createdAt": "2024-11-28T12:00:59.970Z",
+		"updatedAt": "2024-11-28T12:01:02.359Z",
+		"publishedAt": "2024-11-28T12:01:02.367Z"
+	},
+	"meta": {}
+}
+
+this is api fetch structure.
+
+
+http://localhost:1337/api/products?filters[isbestseller][$eq]=true
+for categorie fetching.
+
+http://localhost:1337/api/products?populate=*
+all products
+
+http://localhost:1337/api/products?filters[isbestseller][$eq]=true&populate=images
+
+http://localhost:1337/api/products?filters[isbestseller][$eq]=true&populate=*
+
+ const { loading, error, data } = useFetch(
+    "http://localhost:1337/api/products?filters[isbestseller][$eq]=true&populate=*"
+  );
+  
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
+  
+  const products = data?.data.map((product) => {
+    // Extract the product details
+    const image = product?.images[0]?.url || '';  // Getting the image URL (assuming first image is main)
+    const name = product.Name || 'No Name';
+    const subtitle = product.Subtitle || 'No Subtitle';
+    const description = product.Description || 'No Description';
+    const currentPrice = product.CurrentPrice || 0;
+    const originalPrice = product.OriginalPrice || 0;
+    const discount = product.Discount || 0;
+
+    // Return the formatted object
+    return {
+      image,
+      name,
+      subtitle,
+      description,
+      price: currentPrice,
+      originalPrice,
+      discount,
+    };
+  });
+
+  return (
+    <div>
+      {products?.map((product, index) => (
+        <div key={index}>
+          <img src={`http://localhost:1337${product.image}`} alt={product.name} />
+          <h3>{product.name}</h3>
+          <p>{product.subtitle}</p>
+          <p>{product.description}</p>
+          <p>
+            <span>Price: {product.price} </span>
+            <span>Original Price: {product.originalPrice} </span>
+            <span>Discount: {product.discount}%</span>
+          </p>
+        </div>
+      ))}
+    </div>
+  );
+};

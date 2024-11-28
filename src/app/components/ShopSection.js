@@ -2,10 +2,10 @@ import React from "react";
 import "./ShopSection.css";
 const ShopSection = () => {
   return (
-    <section className="bg-white text-black py-16">
+    <section id="shopsection" className="bg-white text-black py-16 ">
       <div className="mx-auto px-6 text-center flex flex-col">
         {/* Section Header */}
-        <h2 className="text-4xl font-bold mb-5 uppercase">Choose Your Style</h2>
+        <h2  className="text-4xl font-bold mb-5 uppercase ">Choose Your Style</h2>
         <p className="text-lg text-gray-600 mb-8">
           Explore our exclusive collections of Retro and Classic jerseys.
         </p>
