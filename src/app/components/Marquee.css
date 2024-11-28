@@ -1,0 +1,35 @@
+/* Marquee Container */
+.marquee-container {
+
+    width: 100%;
+    height: 30px;
+    background-color: #000000; /* Bright yellow for attention */
+    color: #ffffff; /* Dark text for contrast */
+    font-size: 15px; /* Adjust font size */
+    font-weight: 700;
+    overflow: hidden; /* Hide content outside the bounds */
+    white-space: nowrap;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
+  }
+  
+  /* Marquee Animation */
+  .marquee {
+   color: #ffffff;
+    display: inline-block;
+    white-space: nowrap;
+    animation: scroll-left 120s linear infinite; /* Smooth scrolling */
+  }
+  .marquee p{
+    margin: 0%;
+    margin-top: 4px;
+  }
+  
+  @keyframes scroll-left {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+  

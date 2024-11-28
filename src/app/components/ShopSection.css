@@ -1,0 +1,18 @@
+.button1,.button2{
+    position: absolute;
+    top:35%;
+    left: 35%;
+}
+
+
+@media (max-width: 770px) {
+
+    .button1{
+        top:20%;
+        left: 10%;
+    }
+    .button2{
+        top:20%;
+        left: 10%;
+    }
+}

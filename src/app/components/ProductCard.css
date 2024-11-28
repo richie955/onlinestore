@@ -1,0 +1,117 @@
+.product-card {
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 5px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+.product-card:hover{
+
+  transition: all ease-in-out 0.1s;
+  border: 1px solid #333;
+  
+  border-top-left-radius: 15px;
+  border-top-right-radius: 5px;
+}
+.product-image img {
+  border-top-left-radius: 15px;
+  border-top-right-radius: 5px;
+  width: 100%;
+  object-fit: cover; 
+}
+  
+  .product-details {
+    margin-left: 10px;
+    margin-top: 8px;
+    margin-bottom: 7px;
+    background-color: rgb(255, 255, 255);
+    padding: 3px;
+    padding-left: 10px;
+    padding-right: 0px;
+    border-top: 1px solid #333;
+    border-left: 1px solid #333;
+    border-bottom: 1px solid #333;
+    border-bottom-left-radius: 15px;
+  
+  }
+  
+  .product-name {
+
+    font-size: 1rem;
+    font-weight: bold;
+  }
+  
+  .product-subtitle {
+    font-size: 0.9rem;
+    color: #666;
+  }
+
+  .price {
+    margin-left: 10px;
+    width: 200px;
+    padding: 6px;
+    padding-left: 10px;
+    border: 1px solid #333;
+    margin-top: 8px;
+  }
+  
+  .current-price {
+    font-size: 1rem;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  .original-price {
+    font-size: 0.8rem;
+    color: #999;
+    text-decoration: line-through;
+    margin-left: 10px;
+  }
+  
+  .discount {
+    font-size: 0.8rem;
+    color: red;
+    margin-left: 10px;
+  }
+  
+ 
+  
+
+  
+  @media (max-width: 800px) {
+    .product-name ,.product-subtitle{
+      font-size: 0.8rem;
+    }
+    .discount,.original-price{
+      font-size: 0.7rem;
+    }
+    .current-price{
+      font-size: 0.8rem;
+    }
+    
+
+    .price{
+      width: 160px;
+      padding: 1px;
+      padding-left: 5px;
+      padding-right: 2px;
+    }
+  }
+
+  @media (max-width: 620px)
+  {
+    .product-card{
+      box-shadow: 0 0px 0px rgba(0, 0, 0, 0.0);
+      border-radius: 0px;
+
+    }
+    .product-image img{
+      border-radius: 0px;
+    }
+      
+
+  }
+  

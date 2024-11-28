@@ -1,0 +1,38 @@
+/* Your grid layout and card styles here */
+.productgrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 columns by default */
+  gap: 0; /* No gap by default */
+ 
+}
+
+@font-face {
+  font-family: 'myfont';
+  src: url('/store/public/fonts/Helvetica.woff') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+/* Media queries for responsiveness */
+@media (min-width: 620px) {
+  .productgrid {
+    padding: 10px;
+    grid-template-columns: repeat(3, 1fr); /* 3 columns for medium screens */
+    gap: 10px; /* Add gap */
+  }
+}
+
+@media (min-width: 970px) {
+  .productgrid {
+    padding: 10px;
+    grid-template-columns: repeat(4, 1fr); /* 4 columns for larger screens */
+    gap: 10px; /* Maintain gap */
+  }
+}
+
+@media (min-width: 1024px) {
+  .productgrid {
+    padding: 25px;
+    grid-template-columns: repeat(4, 1fr); /* 4 columns for large screens */
+    gap: 24px; /* Larger gap on large screens */
+  }
+}
