@@ -41,7 +41,7 @@ const Hero = () => {
       <div className="hero-content">
         <div className=" text-center py-16 px-4 flex flex-col items-center justify-center">
           <a
-            href="/collections/classics"
+            href="/classics"
             className="bg-black opacity-80 text-white border-white border-[1px] pl-4 py-[2px] rounded-full text-sm mb-4 flex items-center justify-center gap-2  max-w-md"
           >
            {heroData?.Offer}
