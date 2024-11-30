@@ -3,6 +3,7 @@ import React from "react";
 import useFetch from "../hooks/useFetch";
 import ProductCard from "../components/ProductCard";
 import styles from "../page.module.css";
+import Link from "next/link";
 
 const BestSellers = () => {
   const { loading, error, data } = useFetch(
@@ -22,6 +23,8 @@ const BestSellers = () => {
     const currentPrice = product.CurrentPrice || 0;
     const originalPrice = product.OriginalPrice || 0;
     const discount = product.Discount || 0;
+    const ProductId =product.id||0;
+    const DocID=product.documentId||"";
 
     // Return the formatted object
     return {
@@ -32,14 +35,20 @@ const BestSellers = () => {
       price: currentPrice,
       originalPrice,
       discount,
+      ProductId,
+      DocID
+
     };
   });
+
 
   return (
     <div>
       <div className="mt-10  flex flex-col ">
         <div>
-          <h2 className="text-4xl pl-8 font-bold mb-3 uppercase">Classics & Retros</h2>
+          <h2 className="text-4xl pl-8 font-bold mb-3 uppercase">
+            Classics & Retros
+          </h2>
           <p className="text-lg text-gray-600 pl-8 mb-5">
             What else rather than a fresh pair of retro's to feel the occasion?
           </p>
@@ -48,15 +57,9 @@ const BestSellers = () => {
           {products?.map((product, index) => (
             <div key={index}>
               <div className="product-card-container">
-                <ProductCard product={product} />
-              </div>
-            </div>
-          ))}
-
-          {products?.map((product, index) => (
-            <div key={index}>
-              <div className="product-card-container">
-                <ProductCard product={product} />
+               
+                  <ProductCard product={product} />
+               
               </div>
             </div>
           ))}

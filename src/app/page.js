@@ -1,5 +1,5 @@
 "use client";
-import { SessionProvider } from "next-auth/react"; // Import SessionProvider
+
 import styles from "./page.module.css";
 import Marquee from "./components/Marquee";
 import Navbar from "./components/Navbar";
@@ -22,15 +22,12 @@ const HomePage = () => {
   const heroData = data?.data; // Sample product data to pass to ProductCard
 
   return (
-    <SessionProvider>
+   
       <div className="main">
         {/* Hero Section */}
         <Hero />
 
-        {/* SignIn Section */}
-        <div className="bg-gray-600 text-center py-10 rounded-lg my-10 mx-10">
-          <SignIn />
-        </div>
+        
 
         {/* Shop Section */}
         <ShopSection />
@@ -44,7 +41,7 @@ const HomePage = () => {
 
 
       </div>
-    </SessionProvider>
+ 
   );
 };
 

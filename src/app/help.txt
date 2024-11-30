@@ -128,3 +128,8 @@ http://localhost:1337/api/products?filters[isbestseller][$eq]=true&populate=*
     </div>
   );
 };
+
+
+http://localhost:1337/api/wishlists?populate=products
+
+for wishlist of a particular person.

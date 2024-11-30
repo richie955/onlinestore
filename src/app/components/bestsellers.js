@@ -23,6 +23,8 @@ const BestSellers = () => {
     const currentPrice = product.CurrentPrice || 0;
     const originalPrice = product.OriginalPrice || 0;
     const discount = product.Discount || 0;
+    const ProductId =product.id||0;
+    const DocID=product.documentId||"";
 
     // Return the formatted object
     return {
@@ -33,6 +35,9 @@ const BestSellers = () => {
       price: currentPrice,
       originalPrice,
       discount,
+      ProductId,
+      DocID
+
     };
   });
 

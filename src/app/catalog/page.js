@@ -4,7 +4,10 @@ import useFetch from "../hooks/useFetch";
 import ProductCard from "../components/ProductCard";
 import styles from "../page.module.css";
 
+
 const BestSellers = () => {
+
+
   const { loading, error, data } = useFetch(
     "http://localhost:1337/api/products?populate=*"
   );
@@ -22,6 +25,8 @@ const BestSellers = () => {
     const currentPrice = product.CurrentPrice || 0;
     const originalPrice = product.OriginalPrice || 0;
     const discount = product.Discount || 0;
+    const ProductId =product.id||0;
+    const DocID=product.documentId||"";
 
     // Return the formatted object
     return {
@@ -32,6 +37,9 @@ const BestSellers = () => {
       price: currentPrice,
       originalPrice,
       discount,
+      ProductId,
+      DocID
+
     };
   });
 
@@ -46,20 +54,16 @@ const BestSellers = () => {
         </div>
         <div className={styles.productgrid}>
           {products?.map((product, index) => (
-            <div key={index}>
+            <div key={product.DocID}>
               <div className="product-card-container">
+               
                 <ProductCard product={product} />
+            
               </div>
             </div>
           ))}
 
-          {products?.map((product, index) => (
-            <div key={index}>
-              <div className="product-card-container">
-                <ProductCard product={product} />
-              </div>
-            </div>
-          ))}
+         
         </div>
       </div>
     </div>

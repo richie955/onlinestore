@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import "./ProductCard.css";
+import Link from 'next/link';
 
 // Sample data for the product
 const ProductCard = ({ product }) => {
@@ -7,6 +8,8 @@ const ProductCard = ({ product }) => {
  
 
   return (
+    <Link href={`/product/${product.DocID}`}>
+ 
     <div className="product-card">
       <div className="product-image ">
   <img className='w-full aspect-[1/1] object-fit' src={`http://localhost:1337${product.image}`} alt={product.name} />
@@ -25,6 +28,7 @@ const ProductCard = ({ product }) => {
         <p className="product-subtitle">{product.subtitle}</p>
       </div>
     </div>
+    </Link>
   );
 };
 

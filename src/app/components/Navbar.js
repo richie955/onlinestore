@@ -36,8 +36,9 @@ export default function DropdownAnimation() {
         </ul>
 
         <div className="navbar-actions">
-          <button className="btn" onClick={toggleModal}>
-            <img src="user.png" alt="User Icon" />
+          <button className="btn" >
+          <a href="/login"><img src="user.png" alt="User Icon" /></a>
+            
           </button>
           <button className="btn">
             <a href="/cart"><img src="bag.png" alt="Cart" /></a>
