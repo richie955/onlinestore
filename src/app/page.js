@@ -1,15 +1,9 @@
 "use client";
 
-import styles from "./page.module.css";
-import Marquee from "./components/Marquee";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
 import Hero from "./components/Hero";
 import ShopSection from "./components/ShopSection";
-import ProductCard from "./components/ProductCard"; // Import ProductCard
 import useFetch from "./hooks/useFetch";
 import BestSellers from "./components/bestsellers";
-import SignIn from "./components/SignIn";
 
 const HomePage = () => {
   const { loading, error, data } = useFetch(
@@ -22,26 +16,14 @@ const HomePage = () => {
   const heroData = data?.data; // Sample product data to pass to ProductCard
 
   return (
-   
-      <div className="main">
-        {/* Hero Section */}
-        <Hero />
+    <div className="main">
 
-        
-
-        {/* Shop Section */}
-        <ShopSection />
-
-        {/* Best Sellers Section - Pass data to BestSellers component */}
-        <BestSellers products={heroData} />
-
-        <main>
-          {/* Additional sections or content can go here */}
-        </main>
-
-
-      </div>
- 
+      <Hero />
+      <ShopSection />
+      <BestSellers products={heroData} />
+      <main></main>
+      
+    </div>
   );
 };
 

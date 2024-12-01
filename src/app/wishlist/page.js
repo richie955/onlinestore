@@ -8,14 +8,14 @@ export default function Wishlist() {
   useEffect(() => {
     const fetchWishlist = async () => {
       const token = localStorage.getItem("token"); // Retrieve the token from localStorage
-     
+      const username = localStorage.getItem("username");
       if (!token) {
         setError("User not authenticated. Please log in.");
         return;
       }
-
+      
       try {
-        const req = await fetch("http://localhost:1337/api/wishlists?populate[products][populate]=images", {
+        const req = await fetch(`http://localhost:1337/api/wishlists?filters[users_permissions_user][username][$eq]=${encodeURIComponent(username)}&populate[products][populate]=images`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

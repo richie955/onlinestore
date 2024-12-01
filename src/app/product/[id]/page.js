@@ -5,23 +5,6 @@ import useFetch from "../../hooks/useFetch";
 import { useParams } from "next/navigation";
 import Navbar from "../../components/Navbar"
 
-// Hardcoded products data
-const products = [
-  {
-    id: '1',
-    name: 'Real Madrid Home Kit',
-    description: 'Home Kit of Real Madrid FC ~ 2023-24',
-    price: 599,
-    image: '/2.avif',
-  },
-  {
-    id: '2',
-    name: 'Modern Jersey',
-    description: 'A sleek and stylish jersey designed for peak performance.',
-    price: 59.99,
-    image: '/1.avif',
-  },
-];
 
 export default function ProductSingle() {
   const { id } = useParams(); //how tfuckk did ti work>>/?
