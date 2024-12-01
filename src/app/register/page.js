@@ -1,13 +1,27 @@
 "use client"; // Ensures this component runs client-side
 
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 export default function Register() {
+  const router=useRouter();
+  
+
+  useEffect(() => { 
+    const token = sessionStorage.getItem("token"); // if already logged in - go to login page.
+    if (token) {
+      router.push('/login')
+    }
+  }, []);
+
+
 
   const [username,setUsername]=useState(''); //METHOD1
   const [email, setEmail] = useState('');     //METHOD1
   const [password, setPassword] = useState(''); //METHOD1
+  
   const [message, setMessage] = useState(null);
 
   const register = async (event) => {
@@ -28,6 +42,8 @@ export default function Register() {
       body: JSON.stringify(jsonData),
     };
 
+    console.log(JSON.stringify(jsonData));
+
     const req = await fetch(
       "http://localhost:1337/api/auth/local/register",
       reqOptions
@@ -37,11 +53,17 @@ export default function Register() {
     if (res.error) {
       console.log(res.error.message);
       setMessage(res.error.message);
+      toast(set.error.message)
+    
       return;
     }
 
     if (res.jwt && res.user) {
-      setMessage("Successfull registration.");
+      toast("Successfull registration.");
+      sessionStorage.setItem("token", res.jwt); // Save JWT and user object as a string for authenticated requests
+      sessionStorage.setItem("user", JSON.stringify(res.user)); 
+      console.log(JSON.stringify(res.user));
+      router.push('/')
     }
   };
 

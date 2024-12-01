@@ -7,30 +7,40 @@ export default function Wishlist() {
 
   useEffect(() => {
     const fetchWishlist = async () => {
-      const token = localStorage.getItem("token"); // Retrieve the token from localStorage
-      const username = localStorage.getItem("username");
+      const token = sessionStorage.getItem("token"); // Retrieve the token from sessionStorage
+      const user = sessionStorage.getItem("user");
+
       if (!token) {
         setError("User not authenticated. Please log in.");
         return;
       }
-      
+      console.log(JSON.parse(user).username);
       try {
-        const req = await fetch(`http://localhost:1337/api/wishlists?filters[users_permissions_user][username][$eq]=${encodeURIComponent(username)}&populate[products][populate]=images`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const req = await fetch(
+          `http://localhost:1337/api/wishlists?filters[users_permissions_user][username][$eq]=${encodeURIComponent(
+            JSON.parse(user).username
+          )}&populate[product][populate]=images`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
 
         const res = await req.json();
-        const imageName = res.data[0]?.products.images && product.images.length > 0 ? product.images[0].name : null;
-        const imageUrl = imageName ? `http://localhost:1337/uploads/${imageName}` : null;
 
+        console.log(res);
 
-        console.log(res)
+        // const imageName = res.data[0]?.products.images && product.images.length > 0 ? product.images[0].name : "hug";
+        // const imageUrl = imageName ? `http://localhost:1337/uploads/${imageName}` : "hfj";
+
+        // console.log(imageName+imageUrl)
+
+        console.log(res.data[0]);
 
         if (req.ok) {
           // Assuming your API response contains a `data` array with a "products" field
-          setWishlist(res.data[0]?.products || []);  // Access the products field
+          setWishlist(res.data || []); // Access the products field
         } else {
           setError(res.error?.message || "Failed to fetch wishlist.");
         }
@@ -42,33 +52,46 @@ export default function Wishlist() {
     fetchWishlist();
   }, []); // Empty dependency array ensures this runs once when the component mounts
 
- 
- 
   return (
     <div>
-      {error && (
-        <p className="text-red-500 text-center">{error}</p>
-      )}
+      {error && <p className="text-red-500 text-center">{error}</p>}
 
       {!error && wishlist.length === 0 && (
         <p className="text-center">Your wishlist is empty.</p>
       )}
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {wishlist.map((product) => (
-          <div key={product.id} className="border p-4 rounded-lg shadow-md">
-            <img
-              // src={`https://localhost:1337/uploads/${product.images[0].name}`} // Assuming there's an images field
-              src={`/${product.images[0].name}`}  //this works.
-              alt={product.Name}
-              className="w-full h-48 object-cover mb-4"
-            />
-            <h3 className="text-xl font-semibold">{product.Name}</h3>
-            <p className="text-sm text-gray-600">{product.Description}</p>
-            <p className="font-semibold text-lg mt-2">
-              ${product.CurrentPrice}{" "}
-              <span className="line-through text-gray-500">${product.OriginalPrice}</span>
-            </p>
+        {wishlist.map((wishlistItem) => (
+          // Since each wishlist has one product, access it directly
+          <div key={wishlistItem.id}>
+            {wishlistItem.product ? (
+              <div className="border p-4 rounded-lg shadow-md mb-4">
+                <img
+                  // src={`http://localhost:1337/uploads/${wishlistItem.product.images[0]?.name}`} 
+                  // Assuming the image name is correct
+                  src={`/${wishlistItem.product.images[0]?.name}`}
+                  alt={wishlistItem.product.Name}
+                  className="w-full h-48 object-cover mb-4"
+                />
+
+                <h3 className="text-xl font-semibold">
+                  {wishlistItem.product.Name}
+                </h3>
+                <p className="text-sm text-gray-600">
+                  {wishlistItem.product.Description}
+                </p>
+                <p className="font-semibold text-lg mt-2">
+                  ${wishlistItem.product.CurrentPrice}{" "}
+                  <span className="line-through text-gray-500">
+                    ${wishlistItem.product.OriginalPrice}
+                  </span>
+                </p>
+              </div>
+            ) : (
+              <p className="text-center text-gray-500">
+                No product in this wishlist.
+              </p>
+            )}
           </div>
         ))}
       </div>

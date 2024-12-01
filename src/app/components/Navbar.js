@@ -61,7 +61,7 @@ export default function DropdownAnimation() {
       {/* Modal Component */}
       <Modal isOpen={isModalOpen} onClose={toggleModal} />
 
-      <div className="max-w-md p-4 mx-4 pt-2">
+      <div className="max-w-md p-4 mx-4 py-0">
         <div
           className={`transition-all duration-300 ease-in-out ${
             isMenuOpen ? "max-h-[220px] pt-4 opacity-100" : "max-h-0 py-0 opacity-0"

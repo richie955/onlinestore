@@ -51,11 +51,11 @@ const BestSellers = () => {
         <div className={styles.productgrid}>
           {products?.map((product, index) => (
             <div key={index}>
-               <Link href={`/product/${product.id}`}>
+          
               <div className="product-card-container">
                 <ProductCard product={product} />
               </div>
-              </Link>
+            
             </div>
           ))}
         </div>

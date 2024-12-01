@@ -4,8 +4,11 @@ import Marquee from "./components/Marquee";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import {Roboto} from 'next/font/google'
-import { Inter } from 'next/font/google';
+import { Toaster } from "@/components/ui/sonner"
 
+
+
+import { Inter } from 'next/font/google';
 const roboto = Roboto({
   subsets:['latin'],
   weight:'400',
@@ -32,6 +35,7 @@ export default function RootLayout({ children }) {
       <div className="sticky top-0 z-10">
       <Marquee />
       <Navbar />
+      <Toaster />
       </div>
         {children}
         <Footer />

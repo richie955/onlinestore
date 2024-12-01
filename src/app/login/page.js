@@ -6,27 +6,30 @@ import Link from "next/link";
 import { useEffect } from "react";
 import SignIn from "../components/SignIn";
 import { SessionProvider } from "next-auth/react"; // Import SessionProvider
+import { useRouter } from "next/navigation";
+import { toast } from "sonner"
 
 export default function login() {
   const [user, setUser] = useState(null);
+  const router=useRouter();
 
-  // Check for user token in localStorage
+  // Check for user token in sessionStorage
   useEffect(() => {
-    const token = localStorage.getItem("token"); // JWT token
-    const username = localStorage.getItem("username"); // Optional username dosent work because we havent stored username  ps: i edited code so now username is stored.
-
+    const token = sessionStorage.getItem("token"); // JWT token
+    const user = sessionStorage.getItem("user"); // user details as an object.
     if (token) {
-      setUser({ username: username || "User" }); // Fallback to "User" if username is not stored
+      setUser({ username: JSON.parse(user).username || "User" }); // Fallback to "User" if username is not stored
     }
   }, []);
 
   const handleSignOut = () => {
-    localStorage.removeItem("token"); // Clear the token
-    localStorage.removeItem("username"); // Clear the username (optional)
+    sessionStorage.removeItem("token"); // Clear the token
+    sessionStorage.removeItem("user"); // Clear the username (optional)
     setUser(null); // Reset user state
   };
 
   const [message, setMessage] = useState(null);
+  
   const login = async (e) => {
     e.preventDefault();
     setMessage(null);
@@ -34,7 +37,7 @@ export default function login() {
     const formData = new FormData(e.target);
     const jsonData = Object.fromEntries(formData);
 
-    console.log(jsonData);
+    // console.log(jsonData);
 
     const reqOptions = {
       method: "POST",
@@ -49,15 +52,18 @@ export default function login() {
 
     if (res.error) {
       setMessage(res.error.message);
+      toast("erroroombi")
       return;
     }
 
     if (res.jwt && res.user) {
       setMessage("Successfull Login");
-      localStorage.setItem("token", res.jwt); // Save JWT for authenticated requests
-      console.log(res.user.username);
-      localStorage.setItem("username", res.user.username); //my code lmaooo just stored the username as a cookkiee so login status works
+      sessionStorage.setItem("token", res.jwt); // Save JWT for authenticated requests
+      
+      sessionStorage.setItem("user", JSON.stringify(res.user)); //my code lmaooo just stored the username as a cookkiee so login status works
       // window.location.href = "/wishlist";  // Redirect to the wishlist page
+      toast("Logged In Successfully.")
+      router.push('/')
     }
   };
 
