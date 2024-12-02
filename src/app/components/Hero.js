@@ -20,7 +20,7 @@ const Hero = () => {
   const [currentImage, setCurrentImage] = useState(0);
 
   const { loading, error, data } = useFetch(
-    "https://store-theta-lyart.vercel.app/api/hero-section?populate=*"
+    "http://localhost:1337/api/hero-section?populate=*"
   );
 
   if (loading) return <p>Loading...</p>;
@@ -31,7 +31,7 @@ const Hero = () => {
   const bgImages = data?.data?.BackgroundImages?.map((img) => ({
     id: img.id,
     name: img.name,
-    url: `https://store-theta-lyart.vercel.app${img.url}`, // Construct the full URL
+    url: `http://localhost:1337${img.url}`, // Construct the full URL
   }));
 
  

@@ -1,6 +1,8 @@
 "use client";
 import { useState, useEffect } from "react";
-import ProductCard from "../components/ProductCard";
+import Link from "next/link";
+
+
 export default function Wishlist() {
   const [wishlist, setWishlist] = useState([]);
   const [error, setError] = useState(null);
@@ -60,23 +62,27 @@ export default function Wishlist() {
         <p className="text-center">Your wishlist is empty.</p>
       )}
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {wishlist.map((wishlistItem) => (
+
+
           // Since each wishlist has one product, access it directly
           <div key={wishlistItem.id}>
-              
+              <Link href={`/product/${wishlistItem.product.documentId}`}>
               {/* <ProductCard product={wishlistItem.product} /> */}
-               <div className="border p-4 rounded-lg shadow-md mb-4">
+               <div><div className="border p-4 max-w-[300px] rounded-lg shadow-md mb-4">
                 <img
                 
                   // src={`http://localhost:1337/uploads/${wishlistItem.product.images[0]?.name}`} 
                   // Assuming the image name is correct
+                  
                   src={`/${wishlistItem.product.images[0]?.name}`}
                   alt={wishlistItem.product.Name}
                   className="w-full h-48 object-cover mb-4"
                 />
-
-                <h3 className="text-xl font-semibold">
+                <div className="flex flex-col">
+                  {/* <div className="bg-black text-center text-white px-2 w-40 py-1 rounded-lg hover:w-60 transition-all duration-200"><CartButton></CartButton></div> */}
+                  <div><h3 className="text-xl font-semibold">
                   {wishlistItem.product.Name}
                 </h3>
                 <p className="text-sm text-gray-600">
@@ -86,11 +92,14 @@ export default function Wishlist() {
                   ${wishlistItem.product.CurrentPrice}{" "}
                   <span className="line-through text-gray-500">
                     ${wishlistItem.product.OriginalPrice}
-                  </span>
-                </p>
-              </div>
-           
+                  </span></p></div>
+                </div>
+                
+              </div> </div>
+
+              </Link>
           </div>
+        
         ))}
       </div>
     </div>

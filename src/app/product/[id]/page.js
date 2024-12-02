@@ -1,14 +1,23 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import useFetch from "../../hooks/useFetch";
 import { useParams } from "next/navigation";
 import WishlistButton from "../../components/WishlistButton";
-import AddToList from "../../utils/AddToList";
+import CartButton from "../../components/CartButton";
+import QuantitySelector from "../../components/QuantitySelector";
 
 export default function ProductSingle() {
   const user = JSON.parse(sessionStorage.getItem("user"));
   const userid = user?.id;
+
+  const[size,setSize]=useState(null);
+  const [selectedQuantity, setSelectedQuantity] = useState(1);
+
+  const handleQuantityChange = (newQuantity) => {
+    console.log("Selected Quantity:", newQuantity);
+    setSelectedQuantity(newQuantity);
+  };
 
   console.log(`user id is: ` + userid);
 
@@ -78,7 +87,7 @@ export default function ProductSingle() {
               <div className="flex gap-4 mt-2 ">
                 {["S", "M", "L"].map((size) => (
                   <button
-                    key={size}
+                    key={size} onClick={()=>setSize(size)}
                     className="border px-3 py-1 border-black hover:bg-gray-500"
                   >
                     {size}
@@ -88,15 +97,17 @@ export default function ProductSingle() {
             </div>
             {/* Action Buttons */}
             <div className="mt-6 flex flex-col gap-4 ">
-              <button className="bg-black text-white rounded-md px-4 py-2 hover:bg-gray-500">
-                Add to Cart
-              </button>
-              {/* <button
-                onClick={() => AddToList(product)}
-                className="bg-black text-white rounded-md px-4 py-2 hover:bg-gray-500"
-              >
-                Add to WishList
-              </button> */}
+            <QuantitySelector initialQuantity={1} min={1} max={10} onChange={handleQuantityChange} />
+              <div className="bg-black text-white rounded-md px-4 py-2 hover:bg-gray-500">
+                <CartButton
+                  product={product}
+                  productId={productid}
+                  id={userid}
+                  cqty={selectedQuantity}
+                  size={size}
+                />
+              </div>
+
               <div className="bg-black text-white rounded-md px-4 py-2 hover:bg-gray-500">
                 <WishlistButton
                   product={product}
@@ -105,9 +116,7 @@ export default function ProductSingle() {
                 />
               </div>
 
-              <button className="bg-black text-white  rounded-md px-4 py-2 hover:bg-gray-500">
-                Buy Now
-              </button>
+        
             </div>
           </div>
         </div>
