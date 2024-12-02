@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-
+import ProductCard from "../components/ProductCard";
 export default function Wishlist() {
   const [wishlist, setWishlist] = useState([]);
   const [error, setError] = useState(null);
@@ -64,9 +64,11 @@ export default function Wishlist() {
         {wishlist.map((wishlistItem) => (
           // Since each wishlist has one product, access it directly
           <div key={wishlistItem.id}>
-            {wishlistItem.product ? (
-              <div className="border p-4 rounded-lg shadow-md mb-4">
+              
+              {/* <ProductCard product={wishlistItem.product} /> */}
+               <div className="border p-4 rounded-lg shadow-md mb-4">
                 <img
+                
                   // src={`http://localhost:1337/uploads/${wishlistItem.product.images[0]?.name}`} 
                   // Assuming the image name is correct
                   src={`/${wishlistItem.product.images[0]?.name}`}
@@ -87,11 +89,7 @@ export default function Wishlist() {
                   </span>
                 </p>
               </div>
-            ) : (
-              <p className="text-center text-gray-500">
-                No product in this wishlist.
-              </p>
-            )}
+           
           </div>
         ))}
       </div>

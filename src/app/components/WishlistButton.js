@@ -1,6 +1,7 @@
 // components/WishlistButton.js
 import { useEffect, useState } from 'react';
 import AddToList from "../utils/AddToList";
+import { toast } from "sonner"
 
 const WishlistButton = ({ product, productId, id }) => {
   const [isInWishlist, setIsInWishlist] = useState(false);
@@ -61,14 +62,14 @@ const WishlistButton = ({ product, productId, id }) => {
 
         if (deleteResponse.ok) {
           setIsInWishlist(false);
-          alert('Product removed from your wishlist');
+          toast('Product removed from your wishlist');
         } else {
           throw new Error('Failed to delete wishlist item');
         }
       }
     } catch (error) {
       console.error('Error:', error.message);
-      alert('Failed to remove product from wishlist.');
+      toast('Failed to remove product from wishlist.');
     }
   };
 
@@ -78,13 +79,13 @@ const WishlistButton = ({ product, productId, id }) => {
 
       if (success) {
         setIsInWishlist(true); // Update state to reflect the addition
-        alert('Product added to your wishlist');
+        toast('Product added to your wishlist');
       } else {
-        alert('Failed to add product to wishlist');
+        toast('Failed to add product to wishlist');
       }
     } catch (error) {
       console.error('Error:', error.message);
-      alert('Failed to add product to wishlist');
+      toast('Failed to add product to wishlist');
     }
   };
 
