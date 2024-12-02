@@ -20,7 +20,7 @@ const Hero = () => {
   const [currentImage, setCurrentImage] = useState(0);
 
   const { loading, error, data } = useFetch(
-    "http://localhost:1337/api/hero-section?populate=*"
+    "https://store-theta-lyart.vercel.app/api/hero-section?populate=*"
   );
 
   if (loading) return <p>Loading...</p>;
