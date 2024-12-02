@@ -31,7 +31,7 @@ const Hero = () => {
   const bgImages = data?.data?.BackgroundImages?.map((img) => ({
     id: img.id,
     name: img.name,
-    url: `http://localhost:1337${img.url}`, // Construct the full URL
+    url: `https://store-theta-lyart.vercel.app${img.url}`, // Construct the full URL
   }));
 
  

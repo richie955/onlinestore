@@ -7,7 +7,7 @@ import BestSellers from "./components/bestsellers";
 
 const HomePage = () => {
   const { loading, error, data } = useFetch(
-    "http://localhost:1337/api/products?filters[isbestseller][$eq]=true"
+    "https://store-theta-lyart.vercel.app/api/products?filters[isbestseller][$eq]=true"
   );
 
   if (loading) return <p>Loading...</p>;
@@ -19,8 +19,8 @@ const HomePage = () => {
     <div className="main">
 
       <Hero />
-      <ShopSection />
-      <BestSellers products={heroData} />
+      {/* <ShopSection />
+      <BestSellers products={heroData} /> */}
       <main></main>
       
     </div>
